@@ -3,7 +3,6 @@ package avatar
 import (
 	"bytes"
 	"errors"
-	"fmt"
 	"image"
 	"image/color"
 	"image/draw"
@@ -34,9 +33,9 @@ type dimensions struct {
 
 var (
 	defaultSize      = 300
-	defaultBgColor   = color.Transparent
+	defaultBgColor   = color.RGBA{215, 0, 255, 255}
 	defaultTxtColor  = color.White
-	defaultNInitials = 2
+	defaultNInitials = 1
 )
 
 func NewAvatarFromInitials(text []byte, options *InitialsOptions) (*Initials, error) {
@@ -173,12 +172,6 @@ func generateCircleImage(a Avatar, bgColor color.Color) (image.Image, error) {
 		p: image.Pt(int(float64(size)/2), int(float64(size)/2)),
 		r: size / 2,
 	}
-
-	b := circleMask.Bounds()
-	fmt.Println(b)
-
-	at := circleMask.At(b.Max.X/2, b.Max.Y)
-	fmt.Println(at)
 
 	draw.DrawMask(dstImg, sqImg.Bounds(), sqImg, image.ZP, circleMask, image.ZP, draw.Over)
 

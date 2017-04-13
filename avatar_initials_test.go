@@ -8,15 +8,13 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestInitials_SquareCircle(t *testing.T) {
-	size := 100
+func TestInitials_Circle(t *testing.T) {
+	size := 200
 
 	newAvatar, err := NewAvatarFromInitials([]byte("John Smith"), &InitialsOptions{
 		Size:      size,
 		NInitials: 2,
 		FontPath:  getTestResource("test_data", "Arial.ttf"),
-		TextColor: color.White,
-		BgColor:   color.RGBA{0, 0, 255, 255},
 	})
 	assert.NoError(t, err)
 
@@ -27,6 +25,19 @@ func TestInitials_SquareCircle(t *testing.T) {
 	roundFile, err := os.Create(roundOutputPath)
 	assert.NoError(t, err)
 	roundFile.Write(round)
+}
+
+func TestInitials_Square(t *testing.T) {
+	size := 200
+
+	newAvatar, err := NewAvatarFromInitials([]byte("John Smith"), &InitialsOptions{
+		Size:      size,
+		NInitials: 2,
+		FontPath:  getTestResource("test_data", "Arial.ttf"),
+		TextColor: color.White,
+		BgColor:   color.RGBA{0, 0, 255, 255},
+	})
+	assert.NoError(t, err)
 
 	square, err := newAvatar.Square()
 	assert.NoError(t, err)

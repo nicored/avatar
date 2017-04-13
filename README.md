@@ -7,34 +7,41 @@ You can create square avatars, or round avatars.
 To use it with a picture:
 
 ```go
-    size := 300
-    av, _ := avatar.NewAvatarForPic([]byte("/path/to/your/pic.jpg", size)
-    mySquaredAvatar, _ := av.Square()
-    myRoundAvatar, _ := av.Circle()
-    
-    squareFile, _ := os.Create("/path/to/avatar_square.png")
-    defer squareFile.Close()
-    squareFile.Write(mySquareAvatar)
+    size := 200
 
-    roundFile, _ := os.Create("/path/to/avatar_circle.png")
-    defer roundFile.Close()
-    roundFile.Write(myRoundAvatar)
+    fileBytes, _ := ioutil.ReadFile("./test_data/super_mascot.jpg")
+    newAvatar, _ := NewAvatarFromPic(fileBytes, &PictureOptions{
+        Size: size, // default 300
+    })
+
+    round, err := newAvatar.Circle()
+    roundFile, _ := os.Create("./output/round_super_mascot.png")
+    roundFile.Write(round)
+
+    square, err := newAvatar.Square()
+    squareFile, _ := os.Create("./output/square_super_mascot.png")
+    roundFile.Write(square)
 ```
 
 To use it with initials:
 
 ```go
-    size := 300
-    nCharacters := 2
-    av, _ := avatar.NewAvatarForInitials([]byte("John Smith", size, nCharacters, "/path/to/your/font.ttf")
-    mySquaredAvatar, _ := av.Square()
-    myRoundAvatar, _ := av.Circle()
-    
-    squareFile, _ := os.Create("/path/to/avatar_square.png")
-    defer squareFile.Close()
-    squareFile.Write(mySquareAvatar)
+    size := 200
+    newAvatar, err := NewAvatarFromInitials([]byte("John Smith"), &InitialsOptions{
+        FontPath:  "./test_data/Arial.ttf",    // Required
+        Size:      size,                       // default 300
+        NInitials: 2,                          // default 1 - If 0, the whole text will be printed
+        TextColor: color.White,                // Default White
+        BgColor:   color.RGBA{0, 0, 255, 255}, // Default color.RGBA{215, 0, 255, 255} (purple)
+    })
 
-    roundFile, _ := os.Create("/path/to/avatar_circle.png")
+    square, _ := newAvatar.Square()
+    squareFile, _ := os.Create("./output/square_john_smith_initials.png")
+    defer squareFile.Close()
+    squareFile.Write(square)
+
+    round, _ := newAvatar.Circle()
+    roundFile, _ := os.Create("./output/round_john_smith_initials.png")
     defer roundFile.Close()
-    roundFile.Write(myRoundAvatar)
+    roundFile.Write(round)
 ```
