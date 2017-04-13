@@ -1,1 +1,16 @@
-{}
+{
+    "dependencies": {
+        "github.com/golang/freetype": {
+            "version": "^1.1.4"
+        },
+        "github.com/nfnt/resize": {
+            "branch": "master"
+        },
+        "github.com/stretchr/testify": {
+            "branch": "^1.1.4"
+        },
+        "golang.org/x/image": {
+            "branch": "master"
+        }
+    }
+}

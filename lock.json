@@ -1,6 +1,14 @@
 {
-    "memo": "0a16c5048d585585a32318930b176298e0eea008e441a9ed04f89b1c4a0b735b",
+    "memo": "1a84a83d4d3fd135fcbf20bba4b9aa1fcb28c627076cd17604fa6c4a64a2de52",
     "projects": [
+        {
+            "name": "github.com/davecgh/go-spew",
+            "version": "v1.1.0",
+            "revision": "346938d642f2ec3594ed81d874461961cd0faa76",
+            "packages": [
+                "spew"
+            ]
+        },
         {
             "name": "github.com/golang/freetype",
             "branch": "master",
@@ -17,6 +25,22 @@
             "revision": "891127d8d1b52734debe1b3c3d7e747502b6c366",
             "packages": [
                 "."
+            ]
+        },
+        {
+            "name": "github.com/pmezard/go-difflib",
+            "version": "v1.0.0",
+            "revision": "792786c7400a136282c1664665ae0a8db921c6c2",
+            "packages": [
+                "difflib"
+            ]
+        },
+        {
+            "name": "github.com/stretchr/testify",
+            "branch": "master",
+            "revision": "4d4bfba8f1d1027c4fdbe371823030df51419987",
+            "packages": [
+                "assert"
             ]
         },
         {

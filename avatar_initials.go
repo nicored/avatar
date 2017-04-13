@@ -1,11 +1,13 @@
 package avatar
 
 import (
+	"errors"
 	"image"
 	"image/color"
 	"image/draw"
 	"io/ioutil"
 	"regexp"
+	"strings"
 	"unicode"
 
 	"github.com/golang/freetype"
@@ -14,15 +16,35 @@ import (
 	"golang.org/x/image/math/fixed"
 )
 
-type Initials struct {
-	Type
-	fontPath string
-	bgRGBA   color.RGBA
-	txtRGBA  color.RGBA
+type InitialsOptions struct {
+	BgColor   color.Color
+	Size      int
+	FontPath  string
+	TextColor color.Color
+	NInitials int
 }
 
-func (i *Initials) loadOriginalImage() error {
-	size := i.size * 3
+type Initials struct {
+	source        []byte
+	options       *InitialsOptions
+	originalImage image.Image
+	squareImage   image.Image
+	circleImage   image.Image
+}
+
+func (i Initials) Source() []byte {
+	return i.source
+}
+
+func (i Initials) loadOriginalImage() (image.Image, error) {
+	text := i.source
+
+	nInitials := i.options.nInitials()
+	if nInitials > 0 {
+		text = getInitials(text, nInitials)
+	}
+
+	size := i.options.size() * 3 // 3 times bigger for better quality
 
 	// Draw background img
 	imgRect := image.Rect(0, 0, size, size)
@@ -30,36 +52,30 @@ func (i *Initials) loadOriginalImage() error {
 	draw.Draw(
 		dst,
 		dst.Bounds(),
-		image.NewUniform(i.bgRGBA),
+		image.NewUniform(i.options.bgColor()),
 		image.ZP,
 		draw.Src)
 
-	// Prepare Font
-	fontBytes, err := ioutil.ReadFile(i.fontPath)
+	ftFont, err := i.options.font()
 	if err != nil {
-		return err
-	}
-
-	ftFont, err := freetype.ParseFont(fontBytes)
-	if err != nil {
-		return err
+		return nil, err
 	}
 
 	fontFace := truetype.NewFace(ftFont, &truetype.Options{
-		Size: getFontSizeThatFits(i.source, float64(size), ftFont),
+		Size: getFontSizeThatFits(text, float64(size), ftFont),
 	})
 
 	fd := font.Drawer{
 		Dst:  dst,
-		Src:  image.NewUniform(i.txtRGBA),
+		Src:  image.NewUniform(i.options.textColor()),
 		Face: fontFace,
 	}
 
 	// Figure out baseline and adv for string in img
-	txtWidth := fd.MeasureBytes(i.source)
+	txtWidth := fd.MeasureBytes(text)
 	txtWidthInt := int(txtWidth >> 6)
 
-	bounds, _ := fd.BoundBytes(i.source)
+	bounds, _ := fd.BoundBytes(text)
 	txtHeight := bounds.Max.Y - bounds.Min.Y
 	txtHeightInt := int(txtHeight >> 6)
 
@@ -68,11 +84,60 @@ func (i *Initials) loadOriginalImage() error {
 
 	fd.Dot = fixed.Point26_6{X: fixed.Int26_6(advLine << 6), Y: fixed.Int26_6(baseline << 6)}
 
-	fd.DrawBytes(i.source)
+	fd.DrawBytes(text)
 
-	i.squareImg = dst
+	return dst, nil
+}
 
-	return nil
+func (i Initials) originalImg() image.Image {
+	return i.originalImage
+}
+
+// Generates the square avatar
+// It returns the avatar image in []byte or an error something went wrong
+func (i Initials) Square() ([]byte, error) {
+	return square(i, i.options)
+}
+
+func (i Initials) Circle() ([]byte, error) {
+	return circle(i, i.options)
+}
+
+func (o InitialsOptions) bgColor() color.Color {
+	return bgColor(o.BgColor)
+}
+
+func (o InitialsOptions) size() int {
+	return size(o.Size)
+}
+
+func (o InitialsOptions) nInitials() int {
+	if o.NInitials == 0 {
+		return defaultNInitials
+	}
+
+	return o.NInitials
+}
+
+func (o InitialsOptions) font() (*truetype.Font, error) {
+	if strings.TrimSpace(o.FontPath) == "" {
+		return nil, errors.New("No font path given")
+	}
+
+	fontBytes, err := ioutil.ReadFile(o.FontPath)
+	if err != nil {
+		return nil, err
+	}
+
+	return freetype.ParseFont(fontBytes)
+}
+
+func (o InitialsOptions) textColor() color.Color {
+	if o.TextColor == nil {
+		return defaultTxtColor
+	}
+
+	return o.TextColor
 }
 
 func getFontSizeThatFits(text []byte, imgWidth float64, ftFont *truetype.Font) float64 {
@@ -112,7 +177,7 @@ func getInitials(text []byte, nChars int) []byte {
 			continue
 		}
 
-		if ((unicode.IsUpper(rune(ch)) && unicode.IsLower(rune(previous))) || (unicode.IsLower(rune(ch)) && len(initials) == 0)) && !isSymbol(rune(ch)) {
+		if ((unicode.IsUpper(rune(ch)) && unicode.IsLower(rune(previous))) || (unicode.IsLower(rune(ch)) && len(initials) == 0)) || isSymbol(rune(previous)) {
 			initials = append(initials, ch)
 			previous = ch
 		}
