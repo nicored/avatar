@@ -1,0 +1,32 @@
+{
+    "memo": "0a16c5048d585585a32318930b176298e0eea008e441a9ed04f89b1c4a0b735b",
+    "projects": [
+        {
+            "name": "github.com/golang/freetype",
+            "branch": "master",
+            "revision": "255de57f4e681ed92b2d55a483a27194dfa2b3dc",
+            "packages": [
+                ".",
+                "raster",
+                "truetype"
+            ]
+        },
+        {
+            "name": "github.com/nfnt/resize",
+            "branch": "master",
+            "revision": "891127d8d1b52734debe1b3c3d7e747502b6c366",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "golang.org/x/image",
+            "branch": "master",
+            "revision": "7c3fafc74fb3a4a5e096c9557559d927f5098947",
+            "packages": [
+                "font",
+                "math/fixed"
+            ]
+        }
+    ]
+}
