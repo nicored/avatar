@@ -1,0 +1,56 @@
+{
+    "memo": "1a84a83d4d3fd135fcbf20bba4b9aa1fcb28c627076cd17604fa6c4a64a2de52",
+    "projects": [
+        {
+            "name": "github.com/davecgh/go-spew",
+            "version": "v1.1.0",
+            "revision": "346938d642f2ec3594ed81d874461961cd0faa76",
+            "packages": [
+                "spew"
+            ]
+        },
+        {
+            "name": "github.com/golang/freetype",
+            "branch": "master",
+            "revision": "255de57f4e681ed92b2d55a483a27194dfa2b3dc",
+            "packages": [
+                ".",
+                "raster",
+                "truetype"
+            ]
+        },
+        {
+            "name": "github.com/nfnt/resize",
+            "branch": "master",
+            "revision": "891127d8d1b52734debe1b3c3d7e747502b6c366",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/pmezard/go-difflib",
+            "version": "v1.0.0",
+            "revision": "792786c7400a136282c1664665ae0a8db921c6c2",
+            "packages": [
+                "difflib"
+            ]
+        },
+        {
+            "name": "github.com/stretchr/testify",
+            "branch": "master",
+            "revision": "4d4bfba8f1d1027c4fdbe371823030df51419987",
+            "packages": [
+                "assert"
+            ]
+        },
+        {
+            "name": "golang.org/x/image",
+            "branch": "master",
+            "revision": "7c3fafc74fb3a4a5e096c9557559d927f5098947",
+            "packages": [
+                "font",
+                "math/fixed"
+            ]
+        }
+    ]
+}
