@@ -19,6 +19,7 @@ To use it with a picture:
     roundFile, _ := os.Create("/path/to/avatar_circle.png")
     defer roundFile.Close()
     roundFile.Write(myRoundAvatar)
+```
 
 To use it with initials:
 
@@ -36,3 +37,4 @@ To use it with initials:
     roundFile, _ := os.Create("/path/to/avatar_circle.png")
     defer roundFile.Close()
     roundFile.Write(myRoundAvatar)
+```
