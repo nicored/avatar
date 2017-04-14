@@ -1,0 +1,37 @@
+memo = "08dbb4d4e1c10e76fe27f5f6d8568a186670829ee563eb99406e3d973b1167d9"
+
+[[projects]]
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  revision = "a7a0063072ed89d04285d3d3362aa590ed9f7878"
+  version = "v1.1.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/golang/freetype"
+  packages = [".","raster","truetype"]
+  revision = "255de57f4e681ed92b2d55a483a27194dfa2b3dc"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/nfnt/resize"
+  packages = ["."]
+  revision = "891127d8d1b52734debe1b3c3d7e747502b6c366"
+
+[[projects]]
+  name = "github.com/pmezard/go-difflib"
+  packages = ["difflib"]
+  revision = "c0b812dadcf4498dede02bb7f0c5c478be997e34"
+  version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/stretchr/testify"
+  packages = ["assert"]
+  revision = "69483b4bd14f5845b5a1e55bca19e954e827f1d0"
+  version = "v1.1.4"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/image"
+  packages = ["font","math/fixed"]
+  revision = "7c3fafc74fb3a4a5e096c9557559d927f5098947"
