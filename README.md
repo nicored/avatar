@@ -49,5 +49,11 @@ To use it with initials:
     roundFile.Write(round)
 ```
 
-# Results:
+# What you get:
+
+## From our original picture:
+
+![Square: Super Mascot](./test_data/super_mascot.jpg "Square: Super Mascot")
+
+## Our outputs
 ![Square: John Smith](./output/square_john_smith_initials.png "Square: John Smith") ![Round: John Smith](./output/round_john_smith_initials.png "Round: John Smith") ![Square: Mascot](./output/square_super_mascot.png "Square: Mascot") ![Round: Mascot](./output/round_super_mascot.png "Round: Mascot")
