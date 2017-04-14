@@ -9,7 +9,7 @@ install:
   - go get github.com/golang/dep/...
   - go get golang.org/x/tools/cmd/cover
   - go get github.com/mattn/goveralls
-  - cd .. && mkdir src && mv avatar src/avatar
+  - cd .. && mkdir src && mv avatar src/avatar && cd src/avatar
   - pwd && ls -la
   - $HOME/gopath/bin/dep ensure
 
