@@ -7,7 +7,7 @@ Avatar is a package that allows you to create avatars for pictures and initials.
 
 You can create square avatars, or round avatars.
 
-To use it with a picture:
+# Picture:
 
 ```go
     size := 200
@@ -26,7 +26,7 @@ To use it with a picture:
     roundFile.Write(square)
 ```
 
-To use it with initials:
+# Initials:
 
 ```go
     size := 200
@@ -48,6 +48,16 @@ To use it with initials:
     defer roundFile.Close()
     roundFile.Write(round)
 ```
+
+The input for initials can be any text, and the package identifies the best candidates for the initials.
+
+If you give it an email address, it will try to identify the initials in the string preceding the @.
+
+Not specifying NInitials in options would print the whole text as is.
+
+And the font path is required, so maybe it should not be put in InitialsOptions, we'll see what the community thinks.
+
+
 
 # What you get:
 
