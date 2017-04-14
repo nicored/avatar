@@ -1,4 +1,7 @@
-Avatar
+Avatar: Generate Avatars for the web
+=====================================
+
+[![Build Status](https://travis-ci.org/nxtvibe/avatar.svg)](https://travis-ci.org/nxtvibe/avatar) [![Go Report Card](https://goreportcard.com/badge/github.com/nxtvibe/avatar)](https://goreportcard.com/report/github.com/nxtvibe/avatar)  [![GoDoc](https://godoc.org/github.com/nxtvibe/avatar?status.svg)](https://godoc.org/github.com/nxtvibe/avatar)
 
 Avatar is a package that allows you to create avatars for pictures and initials.
 
@@ -45,3 +48,6 @@ To use it with initials:
     defer roundFile.Close()
     roundFile.Write(round)
 ```
+
+# Results:
+![Square: John Smith](./output/square_john_smith_initials.png "Square: John Smith") ![Round: John Smith](./output/round_john_smith_initials.png "Round: John Smith") ![Square: Mascot](./output/square_super_mascot.png "Square: Mascot") ![Round: Mascot](./output/round_super_mascot.png "Round: Mascot")
