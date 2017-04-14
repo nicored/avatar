@@ -1,7 +1,7 @@
 Avatar: Generate Avatars for the web
 =====================================
 
-[![Build Status](https://travis-ci.org/nxtvibe/avatar.svg)](https://travis-ci.org/nxtvibe/avatar) [![Go Report Card](https://goreportcard.com/badge/github.com/nxtvibe/avatar)](https://goreportcard.com/report/github.com/nxtvibe/avatar)  [![GoDoc](https://godoc.org/github.com/nxtvibe/avatar?status.svg)](https://godoc.org/github.com/nxtvibe/avatar)
+[![Build Status](https://travis-ci.org/nxtvibe/avatar.svg)](https://travis-ci.org/nxtvibe/avatar) [![Go Report Card](https://goreportcard.com/badge/github.com/nxtvibe/avatar)](https://goreportcard.com/report/github.com/nxtvibe/avatar) [![Coverage Status](https://coveralls.io/repos/github/nxtvibe/avatar/badge.svg?branch=master)](https://coveralls.io/github/nxtvibe/avatar?branch=master) [![GoDoc](https://godoc.org/github.com/nxtvibe/avatar?status.svg)](https://godoc.org/github.com/nxtvibe/avatar)
 
 Avatar is a package that allows you to create avatars for pictures and initials.
 
