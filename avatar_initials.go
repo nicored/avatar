@@ -151,7 +151,8 @@ func getFontSizeThatFits(text []byte, imgWidth float64, ftFont *truetype.Font) f
 
 	tw := float64(drawer.MeasureBytes(text) >> 6)
 
-	ratio := fontSize / tw
+        correction := float64(len(text)) / 2
+        ratio := fontSize / tw * correction
 
 	return ratio * (imgWidth - (40./100)*imgWidth)
 }
