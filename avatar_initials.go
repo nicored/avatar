@@ -10,8 +10,8 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/golang/freetype"
-	"github.com/golang/freetype/truetype"
+	"github.com/goki/freetype"
+	"github.com/goki/freetype/truetype"
 	"golang.org/x/image/font"
 	"golang.org/x/image/math/fixed"
 )
@@ -151,7 +151,8 @@ func getFontSizeThatFits(text []byte, imgWidth float64, ftFont *truetype.Font) f
 
 	tw := float64(drawer.MeasureBytes(text) >> 6)
 
-	ratio := fontSize / tw
+        correction := float64(len(text)) / 2
+        ratio := fontSize / tw * correction
 
 	return ratio * (imgWidth - (40./100)*imgWidth)
 }
